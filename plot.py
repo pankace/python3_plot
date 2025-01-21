@@ -1,4 +1,5 @@
 import pygame
+import math
 import logging
 
 logging.basicConfig(level=logging.INFO)
@@ -7,18 +8,19 @@ logger = logging.getLogger()
 logger.info("Program started")
 
 def f(x):
-    return x**2  # Function to plot y = x^2
+    return math.sin(x)
 
 pygame.init()
 
 w = 600
 h = 600
 screen = pygame.display.set_mode((w, h))
-pygame.display.set_caption("Graph of y = x^2")
+pygame.display.set_caption("Graph of y = sin(x)")
 
-interval = (-2, 2)
+interval = (-6, 6) #x
 scale_x = w / (interval[1] - interval[0])
-scale_y = h / 4
+scale_y = h / 2
+
 running = True
 
 while running:
@@ -28,8 +30,8 @@ while running:
 
     screen.fill((0, 0, 0))
 
-    pygame.draw.line(screen, (255, 255, 255), (0, h // 2), (w, h // 2))  # X-axis
-    pygame.draw.line(screen, (255, 255, 255), (w // 2, 0), (w // 2, h))  # Y-axis
+    pygame.draw.line(screen, (255, 255, 255), (0, h // 2), (w, h // 2))  # X
+    pygame.draw.line(screen, (255, 255, 255), (w // 2, 0), (w // 2, h))  # Y
 
     for x_pixel in range(w):
         x = interval[0] + (x_pixel / scale_x)
